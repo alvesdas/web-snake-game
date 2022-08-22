@@ -44,10 +44,19 @@ function updateMov (event) {
 
 
 function startGame() {
+    // confina a cobrinha no canvas
     if (snakePos[0].x > 15 * box && direction == "right") snakePos[0].x = 0;
     if (snakePos[0].x < 0 && direction == "left") snakePos[0].x = 16 * box;
     if (snakePos[0].y > 15 * box && direction == "down") snakePos[0].y = 0;
     if (snakePos[0].y < 0 && direction == "up") snakePos[0].y = 16 * box;
+
+    // define a lógica do fim do jogo
+    for (i = 1; i < snakePos.length; i++) {
+        if (snakePos[0].x == snakePos[i].x && snakePos[0].y == snakePos[i].y) {
+            clearInterval(gameBegin);
+            alert('Game over :(');
+        }
+    }
 
     setBackground();
     createSnake();
@@ -61,6 +70,7 @@ function startGame() {
     if (direction == "up") snakeY -= box;
     if (direction == "down") snakeY += box;
 
+    // possibilita posição aleatória da comida e aumento do corpo da cobrinha
     if (snakeX != food.x || snakeY != food.y) {
         snakePos.pop();
     } else {
