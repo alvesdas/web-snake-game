@@ -8,10 +8,11 @@ snakePos[0] = {
 }
 let direction = "right";
 let food = {
-    x: Math.floor(Math.random() * 15 + 1) * box,
-    y: Math.floor(Math.random() * 15 + 1) * box
+    x: Math.floor(Math.random() * 14 + 1) * box,
+    y: Math.floor(Math.random() * 14 + 1) * box
 }
-
+let gameOverMenu = document.getElementById("gameOver");
+let restartButton = document.getElementById("restartButton");
 
 
 function setBackground() {
@@ -31,9 +32,7 @@ function drawFood() {
     context.fillRect(food.x, food.y, box, box);
 }
 
-
 document.addEventListener('keydown', updateMov);
-
 function updateMov (event) {
     if  (event.keyCode == 37 && direction != 'right') direction = 'left';
     if  (event.keyCode == 38 && direction != 'down') direction = 'up';
@@ -41,6 +40,10 @@ function updateMov (event) {
     if  (event.keyCode == 40 && direction != 'up') direction = 'down';
 }
 
+function refreshPage() {
+    window.location.reload();
+} 
+restartButton.addEventListener('click', refreshPage);
 
 
 function startGame() {
@@ -54,7 +57,7 @@ function startGame() {
     for (i = 1; i < snakePos.length; i++) {
         if (snakePos[0].x == snakePos[i].x && snakePos[0].y == snakePos[i].y) {
             clearInterval(gameBegin);
-            alert('Game over :(');
+            gameOverMenu.style.visibility = "visible";
         }
     }
 

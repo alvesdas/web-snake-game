@@ -11,3 +11,20 @@ body {
     color: green;
 }
 
+section {
+    position: absolute;
+    visibility: hidden;
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 102px 102px;
+    border-radius: 30px;
+}
+
+h3 {
+    text-align: center;
+    color: black;
+}
+
+h3:hover {
+    color:green;
+}
+
